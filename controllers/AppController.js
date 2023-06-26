@@ -1,5 +1,5 @@
-const redisClient = require('../utils/redis');
-const dbClient = require('../utils/db');
+import redisClient from '../utils/redis';
+import dbClient from '../utils/db';
 
 class AppController {
   static async getStatus() {
@@ -10,8 +10,8 @@ class AppController {
   }
 
   static async getStats() {
-    const users = awaredisClient.nbUsers();
-    const files = awaredisClient.nbFiles();
+    const users = await dbClient.nbUsers;
+    const files = await dbClient.nbFiles;
     res.set('Content-Type', 'application/json');
     res.status(200).json({ users, files }).end();
   }
