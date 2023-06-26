@@ -10,8 +10,8 @@ class AppController {
   }
 
   static async getStats() {
-    const users = redisClient.nbUsers();
-    const files = redisClient.nbFiles();
+    const users = awaredisClient.nbUsers();
+    const files = awaredisClient.nbFiles();
     res.set('Content-Type', 'application/json');
     res.status(200).json({ users, files }).end();
   }
