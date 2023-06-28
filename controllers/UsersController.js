@@ -14,10 +14,12 @@ class UsersController {
       res.status(400).json({"error": "Already exist"}).end();
     }
     const user = {
-      "password": crypto.createHash('sha1').update(password).digest(),
-      "email": email
+      password: crypto.createHash('sha1').update(password).digest('base64'),
+      email: email
     }
     user = dbClient.client.db().collection("users").insertOne(user);
-    res.status(201).json({"eamil": user.email, "id": user.id}).end();
+    res.status(201).json({email: user.email, id: user.id}).end();
   }
 }
+
+export default UsersController;
