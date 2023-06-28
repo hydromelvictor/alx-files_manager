@@ -20,6 +20,13 @@ class UsersController {
     user = dbClient.client.db().collection("users").insertOne(user);
     res.status(201).json({email: user.email, id: user.id}).end();
   }
+
+  static async getMe(req, res) {
+    const { usr} = req;
+    delete usr.password;
+    usr.id = usr.id;
+    res.status(200).json(usr).end();
+  }
 }
 
 export default UsersController;

@@ -24,8 +24,10 @@ class AuthController {
     
   }
 
-  static getDisconnect() {
-
+  static async getDisconnect(req, res) {
+    const token = req;
+    await redisClient.del(token);
+    res.status(204).end();
   }
 }
 
